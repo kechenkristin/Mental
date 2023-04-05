@@ -80,14 +80,12 @@ class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
     success_url = reverse_lazy('users-home')
 
 
-@login_required
 def profile(request):
     uid = request.user.id
     profile = Profile.objects.filter(id=uid).first()
     return render(request, 'users/profile.html', {'obj': profile})
 
 
-@login_required
 def profile_edit(request):
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST, instance=request.user)
@@ -110,7 +108,6 @@ leaderboard
 """
 
 
-@login_required
 def leaderboard(request):
     cuid = request.user.id
     user_profile_list = Profile.objects.all()
@@ -122,7 +119,6 @@ access profile through user Id
 """
 
 
-@login_required
 def profile_id(request, uid):
     profile = Profile.objects.filter(id=uid).first()
     return render(request, 'users/profile.html', {'obj': profile})

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Event List Page{% endblock title %}
+{% block title %}Record Page{% endblock title %}
 {% block content %}
 
     <div class="jumbotron vertical-center">
@@ -28,12 +28,15 @@
                                     by
                                     <strong>{{ obj.submitter.username }}</strong> on {{ obj.record_date }}
                                     <br>
+                                <hr class="my-4">
                                 <p class="small mb-0">{{ obj.record }}</p>
                                 <hr class="my-4">
                                 {% if user.id == obj.submitter.id %}
                                     <a class="btn btn-primary" type="button"
-                                       href="/event/{{ obj.id }}/remove">Remove</a>
+                                       href="/record/{{ obj.id }}/remove">Remove</a>
                                 {% endif %}
+                                <a class="btn btn-primary" type="button"
+                                   href="/record/{{ obj.id }}/mood">Analysis Mood</a>
                             </div>
                         </div>
                     {% endfor %}
