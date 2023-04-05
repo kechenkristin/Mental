@@ -72,18 +72,13 @@ def analysis(request, rid):
 
 
     data = response.json()
-    new_data_dic = {}
+    new_data_list = []
 
     for key, value in data.items():
-        if value != 0:
-            new_data_dic[key] = value
+        if value != 0 and key != 'success':
+            new_data_list.append(key)
 
-    new_data = json.dumps(new_data_dic)
     context = {
-        'emotions': new_data
+        'emotions': new_data_list
     }
-
-    print(data)
-    print(new_data)
-
     return render(request, 'record/mood.html', context)
