@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    <ul>
+        <div class="container">
+            <div class="row">
+                {% for post in post_list %}
+                    <div class="card rounded shadow-lg m-2">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ post.title }}</h2>
+                            <p class="card-text">{{ post.description }}</p>
+                            <img src="{{ post.cover.url }}" class="card-img-top" alt="{{ post.title }}">
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </ul>
+{% endblock %}

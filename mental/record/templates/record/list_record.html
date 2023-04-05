@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Event List Page{% endblock title %}
+{% block content %}
+
+    <div class="jumbotron vertical-center">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+
+                <div class="col col-xl-10">
+                    <div class="card mb-5" style="border-radius: 15px;">
+                        <div class="card-body p-4">
+                            <div class="d-grid gap-2">
+                                <a class="btn btn-primary" type="button" href="{% url 'record_add' %}">Add Record</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="col col-xl-10">
+                    {% for obj in record_list %}
+                        <div class="card mb-5" style="border-radius: 15px;">
+                            <div class="card-body p-4">
+                                <!-- add badge here -->
+                                <h3 class="mb-3">{{ obj.event_name }}</h3>
+
+                                <p class="small mb-0"><i class="far fa-star fa-lg"></i> <span class="mx-2">|</span>
+                                    Recorded
+                                    by
+                                    <strong>{{ obj.submitter.username }}</strong> on {{ obj.record_date }}
+                                    <br>
+                                <p class="small mb-0">{{ obj.record }}</p>
+                                <hr class="my-4">
+                                {% if user.id == obj.submitter.id %}
+                                    <a class="btn btn-primary" type="button"
+                                       href="/event/{{ obj.id }}/remove">Remove</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
